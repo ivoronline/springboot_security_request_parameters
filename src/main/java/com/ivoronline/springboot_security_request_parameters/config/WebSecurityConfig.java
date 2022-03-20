@@ -57,8 +57,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
   //=================================================================
   @Override
   protected void configure(HttpSecurity httpSecurity) throws Exception {
-    httpSecurity.authorizeRequests().antMatchers("/Authenticate").permitAll(); //Anonymous access
-    httpSecurity.csrf().disable();                                             //Enable POST to Authenticate
+    //Endpoints get Anonymous Access by default
+    httpSecurity.csrf().disable();         //Enable POST to Authenticate
 
   }
 
