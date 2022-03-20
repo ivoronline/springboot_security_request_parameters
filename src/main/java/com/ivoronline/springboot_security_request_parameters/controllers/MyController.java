@@ -13,19 +13,20 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class MyController {
 
+  //PROPERTIES
   @Autowired AuthenticationManager authenticationManager;
 
   //========================================================================
   // AUTHENTICATE
   //========================================================================
-  @RequestMapping("/Authenticate")
-  public String authenticate(@RequestParam String username, @RequestParam String password) {
+  @RequestMapping("Authenticate")
+  String authenticate123(@RequestParam String username, @RequestParam String password) {
 
     //CREATE AUTHENTICATION OBJECT (with Entered Username & Password)
     Authentication authentication = new UsernamePasswordAuthenticationToken(username, password);
 
     //GET    AUTHENTICATION OBJECT (with Authorities)
-    authentication = authenticationManager.authenticate(authentication);
+    authentication = authenticationManager.authenticate(authentication); //Throws Exception
 
     //STORE  AUTHENTICATION OBJECT (into Context)
     SecurityContextHolder.getContext().setAuthentication(authentication);
@@ -39,8 +40,8 @@ public class MyController {
   // HELLO
   //========================================================================
   @Secured("ROLE_USER")
-  @RequestMapping("/Hello")
-  public String hello() {
+  @RequestMapping("Hello")
+  String hello() {
     return "Hello from Controller";
   }
 
